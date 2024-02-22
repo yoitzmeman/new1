@@ -33,3 +33,16 @@ input.txt
 8,Kelly Green,55000
 9,David Kim,80000
 10,Michelle Wong,90000
+
+$cat input.txt | python3 mapper.py | sort | python3 reducer.py
+
+1. sudo su hduser
+2. start-dfs.sh
+3. start-yarn.sh
+4. jps
+5. hdfs dfs -put /input.txt /
+6. hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming 3.3.4.jar -files
+./mapper.py,./reducer.py -mapper "python3 mapper.py" -reducer "python3 reducer.py" -input
+/5000-8.txt -output /0000009
+7. Observe the result in localhost:9870
+8. Download outputfile and view it for wordcount
