@@ -1,6 +1,6 @@
 1. Create a file big.txt:
 
-hdfs dfs -put big.txt
+hdfs dfs -put big.txt /
 
 localhost:9870
 

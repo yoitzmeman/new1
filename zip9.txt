@@ -21,7 +21,7 @@ print(f'Estimated no. of clusters: {len(np.unique(labels))}')
 print(f'Estimated no. of noise points: {np.sum(labels == -1)}')
 
 # Scatter plot
-colors = ['#3b4cc0' if x == 1 else '#b40426' for x in labels]
+colors = ['blue' if x == 1 else 'red' for x in labels]
 plt.scatter(X[:, 0], X[:, 1], c=colors, marker="o")
 plt.title('OPTICS clustering')
 plt.xlabel('Axis X[0]')
