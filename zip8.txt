@@ -7,6 +7,8 @@ from sklearn.cluster import KMeans, DBSCAN
 df = pd.read_csv("Mall_customers.csv")
 df = df.iloc[:, [3, 4]].values
 
+plt.scatter(df[:,0], df[:,1], s=10, c= "black")
+
 # K-Means clustering to determine the optimal number of clusters
 wcss = []
 for i in range(1, 11):
