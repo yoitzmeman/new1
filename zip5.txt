@@ -1,0 +1,42 @@
+mapper.py
+import sys
+
+def mapper():
+    for line in sys.stdin:
+        line = line.strip()
+
+        document, words = line.split(" ", 1)
+        
+        for word in words.split():
+            print(f"{word}\t{document}")
+
+if __name__ == "__main__":
+    mapper()
+
+reducer.py
+import sys
+
+def reducer():
+    current_word = None
+    doc_list = []
+
+    for line in sys.stdin:
+        word, document = line.strip().split("\t", 1)
+        if word == current_word:
+            doc_list.append(document)
+        else:
+            if current_word:
+                print(f"{current_word}\t{', '.join(set(doc_list))}")
+            current_word, doc_list = word, [document]
+
+    if current_word:
+        print(f"{current_word}\t{', '.join(set(doc_list))}")
+
+if __name__ == "__main__":
+    reducer()
+
+Input.txt
+doc1 apple banana
+doc2 banana orange
+doc3 apple mango
+doc4 banana apple

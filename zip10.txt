@@ -1,0 +1,40 @@
+import plotly.express as px
+
+# Load datasets
+iris_df = px.data.iris()
+tips_df = px.data.tips()
+
+# Iris dataset plots
+fig = px.line(iris_df, y="sepal_width")
+fig.show()
+
+fig = px.line(iris_df, y="sepal_width", line_group='species')
+fig.show()
+
+# Tips dataset plots
+# Bar chart
+fig = px.bar(tips_df, x='day', y="total_bill")
+fig.show()
+
+# Histograms
+fig = px.histogram(tips_df, x="total_bill")
+fig.show()
+
+fig = px.histogram(tips_df, x="total_bill", color='sex', nbins=50, histnorm='percent', barmode='overlay')
+fig.show()
+
+# Pie chart
+fig = px.pie(tips_df, values="total_bill", names="day")
+fig.show()
+
+# Boxplot
+fig = px.box(tips_df, x="day", y="tip")
+fig.show()
+
+# Violin plot
+fig = px.violin(tips_df, x="day", y="tip")
+fig.show()
+
+# 3D Scatter plot
+fig = px.scatter_3d(tips_df, x="total_bill", y="sex", z="tip")
+fig.show()

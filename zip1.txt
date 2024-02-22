@@ -1,0 +1,59 @@
+mapper.py
+
+import sys
+for line in sys.stdin:
+    line = line.strip()
+    words = line.split()
+    for word in words:
+        print('%s\t%s' % (word, 1))
+
+
+reducer.py
+from operator import itemgetter
+import sys
+current_word = None
+current_count = 0
+word = None
+for line in sys.stdin:
+    line = line.strip()
+    word, count = line.split('\t', 1)
+    try:
+        count = int(count)
+    except ValueError:
+        continue
+    if current_word == word:
+        current_count += count
+    else:
+        if current_word:
+            print('%s\t%s' % (current_word, current_count))
+    current_count = count
+    current_word = word
+
+if current_word == word:
+    print('%s\t%s' % (current_word, current_count))
+
+
+input.txt
+Global Academy of Technology (GAT), established in the year 2001, is one of the most sought after engineering and management colleges in Bengaluru, Karnataka. Located in a sprawling
+campus of 10-acre land, GAT is a campus ideal for students to hone their academics in an
+atmosphere of optimism. The institute is enabled with :
+GAT provides ample opportunities for various co-curricular and extra-curricular activities for the
+students. The campus brims with more than 3500 students and 300 experienced staff involved in
+effective Teaching and Learning Process. Academics is supplemented with mentoring, peer
+learning and counselling to ensure holistic development of students. GAT has academic alliances
+with various institutions, industries, and research organizations to provide industry perspective to
+the students.
+
+
+$cat input.txt | python3 mapper.py | sort | python3 reducer.py
+
+1. sudo su hduser
+2. start-dfs.sh
+3. start-yarn.sh
+4. jps
+5. hdfs dfs -put /input.txt /
+6. hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming 3.3.4.jar -files
+./mapper.py,./reducer.py -mapper "python3 mapper.py" -reducer "python3 reducer.py" -input
+/5000-8.txt -output /0000009
+7. Observe the result in localhost:9870
+8. Download outputfile and view it for wordcount

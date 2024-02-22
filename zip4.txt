@@ -1,0 +1,54 @@
+mapper.py
+
+import sys
+import csv
+
+for line in csv.reader(iter(sys.stdin.readline, '')):
+    year = line[0]
+    sales = line[2]
+    print(f"{year}\t{sales}")
+
+
+reducer.py
+
+import sys
+current_year = None
+total_sales = 0
+
+for line in sys.stdin:
+    year, sales = line.strip().split('\t')
+
+    if current_year is None:
+        current_year = year
+
+    try:
+        sales_value = int(sales)
+    except:
+        print("Ignoring non-numeric sales value for the year {year}: {sales})
+        continue
+
+    if year == current_year:
+        total_sales += sales_value
+    else:
+        print(f"{current_year}\t{total_sales}")
+        current_year = year
+        total_sales = sales_value
+
+if current_year is not None:
+    print(f"{current_year}\t{total_sales}")
+
+
+input.txt
+
+input.txt
+2018    Jan 10000
+2018    Feb 12000
+2018    Mar 15000
+2019    Jan 20000
+2019    Feb 22000
+2019    Mar 25000
+2020    Jan 30000
+2020    Feb 32000
+2020    Mar 35000
+2018    gyu 500000
+2019    uyt 750000

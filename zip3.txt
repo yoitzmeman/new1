@@ -1,0 +1,37 @@
+mapper.py
+
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    columns = line.split('\t')
+    salary= columns[2]
+    print("%s\t%s" % (None, salary))
+
+
+reducer.py
+
+import sys
+
+max_salary = 0
+
+for line in sys.stdin:
+    key, value = line.strip().split('\t', 1)
+    try:
+        salary= int(value)
+    except ValueError:
+        continue
+    if salary > max_salary:
+        max_salary= salary
+
+print("Max Salary: %s" % max_salary)
+
+
+input.txt
+
+Alice Engineering 75000
+Bob Sales 60000
+Charlie Engineering 85000
+David Sales 45000
+Eve Marketing 90000
+Frank Engineering 100000
