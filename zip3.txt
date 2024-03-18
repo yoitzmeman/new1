@@ -29,12 +29,12 @@ print("Max Salary: %s" % max_salary)
 
 input.txt
 
-Alice Engineering   75000
-Bob Sales   60000
-Charlie Engineering 85000
-David Sales 45000
-Eve Marketing   90000
-Frank Engineering   100000
+Alice,Engineering,75000
+Bob,Sales,60000
+Charlie,Engineering,85000
+David,Sales,45000
+Eve,Marketing,90000
+Frank,Engineering,100000
 
 $cat input.txt | python3 mapper.py | sort | python3 reducer.py
 

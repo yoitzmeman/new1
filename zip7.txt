@@ -5,7 +5,7 @@ import scipy.cluster.hierarchy as shc
 from sklearn.cluster import AgglomerativeClustering
 
 # Load data
-customer_data = pd.read_csv('hierarchical-clustering-with-python-and-scikit-learn-shopping-data.csv')
+customer_data = pd.read_csv('Mall_customers.csv')
 data = customer_data.iloc[:, 3:5].values
 
 # Dendrogram visualization

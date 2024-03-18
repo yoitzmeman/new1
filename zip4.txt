@@ -24,7 +24,7 @@ for line in sys.stdin:
     try:
         sales_value = int(sales)
     except:
-        print("Ignoring non-numeric sales value for the year {year}: {sales})
+        print(f"Ignoring non-numeric sales value for the year {year}: {sales}")
         continue
 
     if year == current_year:
@@ -41,17 +41,17 @@ if current_year is not None:
 input.txt
 
 input.txt
-2018    Jan 10000
-2018    Feb 12000
-2018    Mar 15000
-2019    Jan 20000
-2019    Feb 22000
-2019    Mar 25000
-2020    Jan 30000
-2020    Feb 32000
-2020    Mar 35000
-2018    gyu 500000
-2019    uyt 750000
+2018,Jan,10000
+2018,Feb,12000
+2018,Mar,15000
+2019,Jan,20000
+2019,Feb,22000
+2019,Mar,25000
+2020,Jan,30000
+2020,Feb,32000
+2020,Mar,35000
+2018,gyu,500000
+2019,uyt,750000
 
 $cat input.txt | python3 mapper.py | sort | python3 reducer.py
 
